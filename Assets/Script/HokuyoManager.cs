@@ -13,12 +13,11 @@ public class HokuyoManager : MonoBehaviour
     [SerializeField][Header("¿¹¿Ü Á¸")]
     List<BoxSize> boxsize = new List<BoxSize>();
 
-    [SerializeField]
-    Slider Zoom;
+    [SerializeField] Slider Zoom;
 
-    [SerializeField]
-    GameObject gizmos_Image, Gizmos_Ob;
-    List<GameObject> gizmos_Images =  new List<GameObject>();
+    [SerializeField] GameObject gizmos_Image, Gizmos_Ob;
+
+    public List<GameObject> gizmos_Images =  new List<GameObject>();
 
     [SerializeField]
     RectTransform Map;

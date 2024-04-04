@@ -5,12 +5,9 @@ using UnityEngine.UI;
 
 public class MapSize : MonoBehaviour
 {
-    [SerializeField]
-    Slider Slider_X_Size;
-    [SerializeField]
-    Slider Slider_Y_Size;
-    [SerializeField]
-    GameObject Map;
+    [SerializeField] Slider Slider_X_Size;
+    [SerializeField] Slider Slider_Y_Size;
+    [SerializeField] GameObject Map;
 
     private void Update()
     {
