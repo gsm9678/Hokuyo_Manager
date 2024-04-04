@@ -20,6 +20,9 @@ public class HokuyoManager : MonoBehaviour
     GameObject gizmos_Image, Gizmos_Ob;
     List<GameObject> gizmos_Images =  new List<GameObject>();
 
+    [SerializeField]
+    RectTransform Map;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,18 @@ public class HokuyoManager : MonoBehaviour
                 vector3.Add(vector);
 
                 gizmos_Images[i].transform.localPosition = vector;
+
+                if (gizmos_Images[i].transform.position.x < Map.rect.width / 2 + Map.transform.position.x &&
+                    gizmos_Images[i].transform.position.x > -Map.rect.width / 2 + Map.transform.position.x &&
+                    gizmos_Images[i].transform.position.y < Map.rect.height / 2 + Map.transform.position.y &&
+                    gizmos_Images[i].transform.position.y > -Map.rect.height / 2 + Map.transform.position.y)
+                {
+                    gizmos_Images[i].SetActive(true);
+                }
+                else
+                {
+                    gizmos_Images[i].SetActive(false);
+                }
 
                 foreach (BoxSize _b in boxsize)
                 {
