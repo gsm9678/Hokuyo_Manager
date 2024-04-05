@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable] // Á÷·ÄÈ­
 public class DataFormat
@@ -12,4 +13,42 @@ public class DataFormat
     public float Point_Scale_Value;
     public float Max_Scale_Value;
     public float Min_Scale_Value;
+}
+
+[Serializable]
+public class DetectedObjectData
+{
+    public float Right, Left, Top, Bottom;
+
+    public DetectedObjectData(Vector3 vector3, float Scale)
+    {
+        Right = Left = vector3.x;
+        Top = Bottom = vector3.y;
+
+        if (Right < vector3.x + Scale / 2)
+            Right = vector3.x + Scale / 2;
+        if (Left > vector3.x - Scale / 2)
+            Left = vector3.x - Scale / 2;
+        if (Top < vector3.y + Scale / 2)
+            Top = vector3.y + Scale / 2;
+        if (Bottom > vector3.y - Scale / 2)
+            Bottom = vector3.y - Scale / 2;
+    }
+
+    public void setData(Vector3 vector3, float Scale)
+    {
+        if (Right < vector3.x + Scale/ 2)
+            Right = vector3.x + Scale / 2;
+        if (Left > vector3.x - Scale/ 2)
+            Left = vector3.x - Scale / 2;
+        if (Top < vector3.y + Scale / 2)
+            Top = vector3.y + Scale / 2;
+        if (Bottom > vector3.y - Scale / 2)
+            Bottom = vector3.y - Scale / 2;
+    }
+
+    public Vector3 getCenter()
+    {
+        return new Vector3((Right + Left) / 2, (Top + Bottom) / 2, 0);
+    }
 }
