@@ -44,7 +44,7 @@ public class PointDetection : MonoBehaviour
 
             for (int i = 0; i < gizmos_Images.Count; i++)
             {
-                if (gizmos_Images[i].active)
+                if (gizmos_Images[i].activeSelf)
                 {
                     Vector3 vector3 = gizmos_Images[i].transform.localPosition;
 
@@ -82,8 +82,16 @@ public class PointDetection : MonoBehaviour
             {
                 if(detectedObjects.Count > i)
                 {
-                    DetectedObjectPoints[i].SetActive(true);
-                    DetectedObjectPoints[i].transform.localPosition = detectedObjects[i].getCenter();
+                    if (detectedObjects[i].getSize().x > Min_Scale.value && detectedObjects[i].getSize().x < Max_Scale.value)
+                    {
+                        DetectedObjectPoints[i].SetActive(true);
+                        DetectedObjectPoints[i].transform.localPosition = detectedObjects[i].getCenter();
+                    }
+                    else if(detectedObjects[i].getSize().y > Min_Scale.value && detectedObjects[i].getSize().y < Max_Scale.value)
+                    {
+                        DetectedObjectPoints[i].SetActive(true);
+                        DetectedObjectPoints[i].transform.localPosition = detectedObjects[i].getCenter();
+                    }
                 }
                 else
                 {

@@ -51,4 +51,9 @@ public class DetectedObjectData
     {
         return new Vector3((Right + Left) / 2, (Top + Bottom) / 2, 0);
     }
+
+    public Vector3 getSize()
+    {
+        return new Vector3(Mathf.Abs(Right) - Mathf.Abs(Left), Mathf.Abs(Top) - Mathf.Abs(Bottom), 0);
+    }
 }
