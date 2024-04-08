@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable] // Á÷·ÄÈ­
@@ -13,6 +15,18 @@ public class DataFormat
     public float Point_Scale_Value;
     public float Max_Scale_Value;
     public float Min_Scale_Value;
+
+    public List<BoxData> BoxData = new List<BoxData>();
+}
+
+[Serializable]
+public class BoxData
+{
+    public string Name;
+    public float X_Position_Value;
+    public float Y_Position_Value;
+    public float X_Size_Value;
+    public float Y_Size_Value;
 }
 
 [Serializable]
