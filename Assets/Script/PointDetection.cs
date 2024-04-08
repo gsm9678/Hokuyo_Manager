@@ -92,6 +92,11 @@ public class PointDetection : MonoBehaviour
                         DetectedObjectPoints[i].SetActive(true);
                         DetectedObjectPoints[i].transform.localPosition = detectedObjects[i].getCenter();
                     }
+                    else
+                    {
+
+                        DetectedObjectPoints[i].SetActive(false);
+                    }
                 }
                 else
                 {
