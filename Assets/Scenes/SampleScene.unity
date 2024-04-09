@@ -1225,7 +1225,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 99411082}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 331094515}
+        m_TargetAssemblyTypeName: BoxManager, Assembly-CSharp
+        m_MethodName: addDropDownOpthions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &99411082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1983,6 +1995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331094514}
+  - component: {fileID: 331094515}
   m_Layer: 0
   m_Name: BoxManager
   m_TagString: Untagged
@@ -2005,6 +2018,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331094515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331094513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe3048b5c28b31409aaa81f5a02152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 481046277}
+  X_Position: {fileID: 1839159946}
+  Y_Position: {fileID: 44062473}
+  X_Size: {fileID: 413273589}
+  Y_Size: {fileID: 2133112261}
 --- !u!1 &340875137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,7 +3351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Slider_X_Size: {fileID: 676543417}
   Slider_Y_Size: {fileID: 313943537}
-  Map: {fileID: 536149795}
+  Map: {fileID: 536149796}
 --- !u!1 &565946104
 GameObject:
   m_ObjectHideFlags: 0
@@ -5406,7 +5436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e90c776cc8d7674386b0c103492297c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxsize: []
   Zoom: {fileID: 1752675429}
   gizmos_Image: {fileID: 8078557171247863453, guid: 9519c8d87dc58964e855821dc2725d52, type: 3}
   Gizmos_Ob: {fileID: 1324377884}
@@ -8087,7 +8116,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1664412435}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 331094515}
+        m_TargetAssemblyTypeName: BoxManager, Assembly-CSharp
+        m_MethodName: removeDropDownOpthions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1664412435
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,12 @@ public class BoxManager : MonoBehaviour
     [SerializeField] Slider X_Size;
     [SerializeField] Slider Y_Size;
 
-    List<BoxData> boxes = new List<BoxData>();
+    public List<BoxData> boxes = new List<BoxData>();
+
+    public List<RectTransform> objects = new List<RectTransform>();
+
+    [SerializeField] GameObject p_box;
+    [SerializeField] Transform t_boxes;
 
     Vector2 p1, p2, p3, p4;
 
@@ -21,19 +26,14 @@ public class BoxManager : MonoBehaviour
     {
         setDropDownOpthions();
 
-        //p1 = new Vector2(transform.position.x - transform.localScale.x / 2, transform.position.z + transform.localScale.z / 2);
-        //p2 = new Vector2(transform.position.x + transform.localScale.x / 2, transform.position.z + transform.localScale.z / 2);
-        //p3 = new Vector2(transform.position.x - transform.localScale.x / 2, transform.position.z - transform.localScale.z / 2);
-        //p4 = new Vector2(transform.position.x + transform.localScale.x / 2, transform.position.z - transform.localScale.z / 2);
         dropdown.onValueChanged.AddListener(delegate { Function_Dropdown(dropdown); });
     }
 
-    string b;
-    private void Function_Dropdown(Dropdown select)
+    private void Update()
     {
         for (int i = 0; i < boxes.Count; i++)
         {
-            if (boxes[i].Name == b)
+            if (boxes[i].Name == dropdown.options[dropdown.value].text)
             {
                 boxes[i].X_Position_Value = X_Position.value;
                 boxes[i].Y_Position_Value = Y_Position.value;
@@ -42,6 +42,15 @@ public class BoxManager : MonoBehaviour
             }
         }
 
+        for (int i =0; i < boxes.Count; i++)
+        {
+            objects[i].transform.localPosition = new Vector3(boxes[i].X_Position_Value, boxes[i].Y_Position_Value, 0);
+            objects[i].sizeDelta = new Vector2(boxes[i].X_Size_Value, boxes[i].Y_Size_Value);
+        }
+    }
+
+    private void Function_Dropdown(Dropdown select)
+    {
         for (int i = 0;  i < boxes.Count; i++)
         {
             if (boxes[i].Name == select.options[select.value].text)
@@ -50,7 +59,6 @@ public class BoxManager : MonoBehaviour
                 Y_Position.value = boxes[i].Y_Position_Value;
                 X_Size.value = boxes[i].X_Size_Value;
                 Y_Size.value = boxes[i].Y_Size_Value;
-                b = select.options[select.value].text;
             }
         }
     }
@@ -67,6 +75,8 @@ public class BoxManager : MonoBehaviour
         dropdown.options.Add(option);
         dropdown.value++;
 
+        objects.Add(Instantiate(p_box, this.transform.position, this.transform.rotation, t_boxes.transform).GetComponent<RectTransform>());
+
         BoxData box = new BoxData();
         box.Name = option.text;
         boxes.Add(box);
@@ -81,8 +91,18 @@ public class BoxManager : MonoBehaviour
             {
                 dropdown.options.RemoveAt(i);
                 boxes.RemoveAt(i);
-
                 dropdown.value--;
+
+                Destroy(objects[i]);
+                objects.RemoveAt(i);
+
+                for(int j = i; j < boxes.Count; j++)
+                {
+                    Dropdown.OptionData option = new Dropdown.OptionData();
+                    option.text = "Box" + j.ToString();
+                    dropdown.options[j].text = option.text;
+                    boxes[j].Name = option.text;
+                }
             }
         }
     }
