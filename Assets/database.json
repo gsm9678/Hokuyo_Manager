@@ -1,8 +1,28 @@
 {
-    "Zoom_InOut_Value": 5.114285945892334,
-    "X_Position_Value": -154.2857208251953,
+    "Zoom_InOut_Value": 5.049999713897705,
+    "X_Position_Value": -151.42857360839845,
     "Y_Position_Value": 0.0,
     "Rotate_Camera_Value": 0.0,
-    "X_Size_Value": 307.5,
-    "Y_Size_Value": 400.0
+    "X_Size_Value": 304.9999694824219,
+    "Y_Size_Value": 400.0,
+    "Point_Scale_Value": 20.0,
+    "Max_Scale_Value": 63.93571090698242,
+    "Min_Scale_Value": 44.135711669921878,
+    "IP_Adress": "192.168.0.39",
+    "BoxData": [
+        {
+            "Name": "Box0",
+            "X_Position_Value": 0.0,
+            "Y_Position_Value": 168.57142639160157,
+            "X_Size_Value": 311.6499938964844,
+            "Y_Size_Value": 69.4000015258789
+        },
+        {
+            "Name": "Box1",
+            "X_Position_Value": -137.14285278320313,
+            "Y_Position_Value": 131.42857360839845,
+            "X_Size_Value": 52.30000305175781,
+            "Y_Size_Value": 134.9499969482422
+        }
+    ]
 }

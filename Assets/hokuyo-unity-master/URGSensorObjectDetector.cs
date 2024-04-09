@@ -11,7 +11,7 @@ namespace HKY
     {
 
         [Header("Connection with Sensor")]
-        [SerializeField] string ip_address = "192.168.0.10";
+        public string ip_address = "192.168.0.10";
         [SerializeField] int port_number = 10940;
         UrgDeviceEthernet urg;
         public int sensorScanSteps { get; private set; }

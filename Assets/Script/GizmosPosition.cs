@@ -5,14 +5,10 @@ using UnityEngine.UI;
 
 public class GizmosPosition : MonoBehaviour
 {
-    [SerializeField]
-    Slider Slider_X_Position;
-    [SerializeField]
-    Slider Slider_Y_Position;
-    [SerializeField]
-    Slider Slider_RotateCamera;
-    [SerializeField]
-    GameObject Gizmos_Ob;
+    [SerializeField] Slider Slider_X_Position;
+    [SerializeField] Slider Slider_Y_Position;
+    [SerializeField] Slider Slider_RotateCamera;
+    [SerializeField] GameObject Gizmos_Ob;
 
     // Update is called once per frame
     void Update()
