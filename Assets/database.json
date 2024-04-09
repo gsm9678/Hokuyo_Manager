@@ -8,5 +8,27 @@
     "Point_Scale_Value": 20.0,
     "Max_Scale_Value": 54.03570556640625,
     "Min_Scale_Value": 44.135711669921878,
-    "BoxData": []
+    "BoxData": [
+        {
+            "Name": "Box0",
+            "X_Position_Value": 0.0,
+            "Y_Position_Value": 168.57142639160157,
+            "X_Size_Value": 311.6499938964844,
+            "Y_Size_Value": 69.4000015258789
+        },
+        {
+            "Name": "Box1",
+            "X_Position_Value": -137.14285278320313,
+            "Y_Position_Value": 142.85714721679688,
+            "X_Size_Value": 46.599998474121097,
+            "Y_Size_Value": 157.75
+        },
+        {
+            "Name": "Box2",
+            "X_Position_Value": 8.571434020996094,
+            "Y_Position_Value": -197.14285278320313,
+            "X_Size_Value": 52.30000305175781,
+            "Y_Size_Value": 32.35000228881836
+        }
+    ]
 }

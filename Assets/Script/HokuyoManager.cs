@@ -9,9 +9,6 @@ public class HokuyoManager : MonoBehaviour
     private URGSensorObjectDetector m_senserData;
     private BoxManager m_boxManager;
 
-    //[SerializeField][Header("¿¹¿Ü Á¸")]
-    //List<BoxSize> boxsize = new List<BoxSize>();
-
     [SerializeField] Slider Zoom;
 
     [SerializeField] GameObject gizmos_Image, Gizmos_Ob;
@@ -31,7 +28,6 @@ public class HokuyoManager : MonoBehaviour
         {
             gizmos_Images.Add(Instantiate(gizmos_Image, this.transform.position, this.transform.rotation, Gizmos_Ob.transform));
         }
-        //StartCoroutine(GetSendsorData());
     }
 
 
@@ -40,12 +36,10 @@ public class HokuyoManager : MonoBehaviour
         for (int i = 0; i < m_senserData.DirectedDistances.Count; i++)
         {
             Vector3 vector = new Vector3(scale(-m_senserData.detectRectWidth / 2, m_senserData.detectRectWidth / 2, (-m_senserData.detectRectWidth / 200) * Zoom.value, (m_senserData.detectRectWidth / 200) * Zoom.value, m_senserData.DirectedDistances[i].x),
-                                    scale(0, m_senserData.detectRectHeight, 0 * Zoom.value, m_senserData.detectRectHeight / 100 * Zoom.value, m_senserData.DirectedDistances[i].y),
-                                    0);
+                                        scale(0, m_senserData.detectRectHeight, 0 * Zoom.value, m_senserData.detectRectHeight / 100 * Zoom.value, m_senserData.DirectedDistances[i].y),
+                                        0);
 
             gizmos_Images[i].transform.localPosition = vector;
-
-            bool check = true;
 
             if (gizmos_Images[i].transform.position.x < Map.rect.width / 2 + Map.transform.position.x &&
                 gizmos_Images[i].transform.position.x > -Map.rect.width / 2 + Map.transform.position.x &&
@@ -59,32 +53,18 @@ public class HokuyoManager : MonoBehaviour
                         gizmos_Images[i].transform.position.y < box.rect.height / 2 + box.transform.position.y &&
                         gizmos_Images[i].transform.position.y > -box.rect.height / 2 + box.transform.position.y)
                     {
-                        check = false; break;
+                        gizmos_Images[i].SetActive(false); break;
                     }
-                }
-                if(check == false)
-                {
-                    gizmos_Images[i].SetActive(false);
-                }
-                else
-                {
-                    gizmos_Images[i].SetActive(true);
+                    else
+                    {
+                        gizmos_Images[i].SetActive(true);
+                    }
                 }
             }
             else
             {
                 gizmos_Images[i].SetActive(false);
             }
-
-            //foreach (BoxSize _b in boxsize)
-            //{
-            //    if (_b.CheckPoint(new Vector2(vector3[i].x, vector3[i].z)))
-            //    {
-            //        Debug.Log("A");
-            //        check = true;  
-            //        break;
-            //    }
-            //}
         }
     }
 

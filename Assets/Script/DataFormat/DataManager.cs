@@ -1,9 +1,11 @@
+using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DataManager : MonoBehaviour
 {
+    private BoxManager m_boxManager;
 
     [SerializeField] Slider Zoom_InOut;
     [SerializeField] Slider X_Position;
@@ -23,6 +25,8 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
+        m_boxManager = GameObject.Find("BoxManager").GetComponent<BoxManager>();
+
         path = Path.Combine(Application.dataPath, "database.json");
         JsonLoad();
     }
@@ -49,6 +53,9 @@ public class DataManager : MonoBehaviour
                 Point_Scale.value = data.Point_Scale_Value;
                 Max_Scale.value = data.Max_Scale_Value;
                 Min_Scale.value = data.Min_Scale_Value;
+
+                m_boxManager.boxes = data.BoxData;
+                m_boxManager.setDropDownOpthions();
             }
         }
         isStarted = true;
@@ -70,6 +77,8 @@ public class DataManager : MonoBehaviour
         data.Point_Scale_Value = Point_Scale.value;
         data.Max_Scale_Value = Max_Scale.value;
         data.Min_Scale_Value = Min_Scale.value;
+
+        data.BoxData = m_boxManager.boxes;
 
         string json = JsonUtility.ToJson(data, true);
 
