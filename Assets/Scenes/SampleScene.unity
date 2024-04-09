@@ -2035,6 +2035,10 @@ MonoBehaviour:
   Y_Position: {fileID: 44062473}
   X_Size: {fileID: 413273589}
   Y_Size: {fileID: 2133112261}
+  boxes: []
+  objects: []
+  p_box: {fileID: 6152157516344312307, guid: 2f4743e5912989a4ea0ac0112f565295, type: 3}
+  t_boxes: {fileID: 1629285082}
 --- !u!1 &340875137
 GameObject:
   m_ObjectHideFlags: 0
@@ -10765,5 +10769,5 @@ SceneRoots:
   - {fileID: 1401413810}
   - {fileID: 1158468765}
   - {fileID: 696690078}
-  - {fileID: 903215871}
   - {fileID: 331094514}
+  - {fileID: 903215871}

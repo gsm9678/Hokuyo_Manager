@@ -20,12 +20,8 @@ public class BoxManager : MonoBehaviour
     [SerializeField] GameObject p_box;
     [SerializeField] Transform t_boxes;
 
-    Vector2 p1, p2, p3, p4;
-
     private void Start()
     {
-        setDropDownOpthions();
-
         dropdown.onValueChanged.AddListener(delegate { Function_Dropdown(dropdown); });
     }
 
@@ -63,9 +59,17 @@ public class BoxManager : MonoBehaviour
         }
     }
 
-    private void setDropDownOpthions()
+    public void setDropDownOpthions()
     {
         dropdown.options.Clear();
+        for(int i = 0; i < boxes.Count; i++)
+        {
+            Dropdown.OptionData option = new Dropdown.OptionData();
+            option.text = boxes[i].Name;
+            dropdown.options.Add(option);
+            dropdown.value++;
+            objects.Add(Instantiate(p_box, this.transform.position, this.transform.rotation, t_boxes.transform).GetComponent<RectTransform>());
+        }
     }
 
     public void addDropDownOpthions()
@@ -93,7 +97,7 @@ public class BoxManager : MonoBehaviour
                 boxes.RemoveAt(i);
                 dropdown.value--;
 
-                Destroy(objects[i]);
+                Destroy(objects[i].transform.gameObject);
                 objects.RemoveAt(i);
 
                 for(int j = i; j < boxes.Count; j++)
@@ -105,13 +109,5 @@ public class BoxManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    public bool CheckPoint(Vector2 vector2)
-    {
-        if (p1.x < vector2.x && p2.x > vector2.x &&
-            p1.y > vector2.y && p3.y < vector2.y)
-            return true;
-        return false;
     }
 }
