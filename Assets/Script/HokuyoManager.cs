@@ -7,11 +7,10 @@ using UnityEngine.UI;
 public class HokuyoManager : MonoBehaviour
 {
     private URGSensorObjectDetector m_senserData;
-    List<Vector3> vector3 = new List<Vector3>();
-    List<Vector3> points = new List<Vector3>();
+    private BoxManager m_boxManager;
 
-    [SerializeField][Header("예외 존")]
-    List<BoxSize> boxsize = new List<BoxSize>();
+    //[SerializeField][Header("예외 존")]
+    //List<BoxSize> boxsize = new List<BoxSize>();
 
     [SerializeField] Slider Zoom;
 
@@ -26,65 +25,67 @@ public class HokuyoManager : MonoBehaviour
     void Start()
     {
         m_senserData = GameObject.Find("Sensor Data").GetComponent<URGSensorObjectDetector>();
-        for(int i = 0; i < 1081; i++)
+        m_boxManager = GameObject.Find("BoxManager").GetComponent<BoxManager>();
+
+        for (int i = 0; i < 1081; i++)
         {
             gizmos_Images.Add(Instantiate(gizmos_Image, this.transform.position, this.transform.rotation, Gizmos_Ob.transform));
         }
-        StartCoroutine(GetSendsorData());
+        //StartCoroutine(GetSendsorData());
     }
 
-    IEnumerator GetSendsorData()
+
+    private void FixedUpdate()
     {
-        while (true)
+        for (int i = 0; i < m_senserData.DirectedDistances.Count; i++)
         {
-            yield return new WaitForFixedUpdate();
-            vector3.Clear();
+            Vector3 vector = new Vector3(scale(-m_senserData.detectRectWidth / 2, m_senserData.detectRectWidth / 2, (-m_senserData.detectRectWidth / 200) * Zoom.value, (m_senserData.detectRectWidth / 200) * Zoom.value, m_senserData.DirectedDistances[i].x),
+                                    scale(0, m_senserData.detectRectHeight, 0 * Zoom.value, m_senserData.detectRectHeight / 100 * Zoom.value, m_senserData.DirectedDistances[i].y),
+                                    0);
 
-            points.Clear();
+            gizmos_Images[i].transform.localPosition = vector;
 
-            for (int i = 0; i < m_senserData.DirectedDistances.Count; i++)
+            bool check = true;
+
+            if (gizmos_Images[i].transform.position.x < Map.rect.width / 2 + Map.transform.position.x &&
+                gizmos_Images[i].transform.position.x > -Map.rect.width / 2 + Map.transform.position.x &&
+                gizmos_Images[i].transform.position.y < Map.rect.height / 2 + Map.transform.position.y &&
+                gizmos_Images[i].transform.position.y > -Map.rect.height / 2 + Map.transform.position.y)
             {
-                bool check = false;
-                Vector3 vector = new Vector3(scale(-m_senserData.detectRectWidth / 2, m_senserData.detectRectWidth / 2, (-m_senserData.detectRectWidth / 200) * Zoom.value, (m_senserData.detectRectWidth / 200) * Zoom.value, m_senserData.DirectedDistances[i].x),
-                                        scale(0, m_senserData.detectRectHeight, 0 * Zoom.value, m_senserData.detectRectHeight / 100 * Zoom.value, m_senserData.DirectedDistances[i].y),
-                                        0);
-                vector3.Add(vector);
-
-                gizmos_Images[i].transform.localPosition = vector;
-
-                if (gizmos_Images[i].transform.position.x < Map.rect.width / 2 + Map.transform.position.x &&
-                    gizmos_Images[i].transform.position.x > -Map.rect.width / 2 + Map.transform.position.x &&
-                    gizmos_Images[i].transform.position.y < Map.rect.height / 2 + Map.transform.position.y &&
-                    gizmos_Images[i].transform.position.y > -Map.rect.height / 2 + Map.transform.position.y)
+                foreach (RectTransform box in m_boxManager.objects)
                 {
-                    gizmos_Images[i].SetActive(true);
+                    if (gizmos_Images[i].transform.position.x < box.rect.width / 2 + box.transform.position.x &&
+                        gizmos_Images[i].transform.position.x > -box.rect.width / 2 + box.transform.position.x &&
+                        gizmos_Images[i].transform.position.y < box.rect.height / 2 + box.transform.position.y &&
+                        gizmos_Images[i].transform.position.y > -box.rect.height / 2 + box.transform.position.y)
+                    {
+                        check = false; break;
+                    }
                 }
-                else
+                if(check == false)
                 {
                     gizmos_Images[i].SetActive(false);
                 }
-
-                foreach (BoxSize _b in boxsize)
+                else
                 {
-                    if (_b.CheckPoint(new Vector2(vector3[i].x, vector3[i].z)))
-                    {
-                        Debug.Log("A");
-                        check = true;
-                        break;
-                    }
-                }
-
-                if (!check)
-                {
-                    points.Add(vector3[i]);
+                    gizmos_Images[i].SetActive(true);
                 }
             }
-        }
-    }
+            else
+            {
+                gizmos_Images[i].SetActive(false);
+            }
 
-    public List<Vector3> getSensorVector()
-    {
-        return points;
+            //foreach (BoxSize _b in boxsize)
+            //{
+            //    if (_b.CheckPoint(new Vector2(vector3[i].x, vector3[i].z)))
+            //    {
+            //        Debug.Log("A");
+            //        check = true;  
+            //        break;
+            //    }
+            //}
+        }
     }
 
     private float scale(float OldMin, float OldMax, float NewMin, float NewMax, float OldValue)

@@ -94,7 +94,6 @@ public class PointDetection : MonoBehaviour
                     }
                     else
                     {
-
                         DetectedObjectPoints[i].SetActive(false);
                     }
                 }

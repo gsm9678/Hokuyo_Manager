@@ -49,7 +49,6 @@ public class DataManager : MonoBehaviour
                 Point_Scale.value = data.Point_Scale_Value;
                 Max_Scale.value = data.Max_Scale_Value;
                 Min_Scale.value = data.Min_Scale_Value;
-
             }
         }
         isStarted = true;
