@@ -6,8 +6,9 @@
     "X_Size_Value": 304.9999694824219,
     "Y_Size_Value": 400.0,
     "Point_Scale_Value": 20.0,
-    "Max_Scale_Value": 54.03570556640625,
+    "Max_Scale_Value": 63.93571090698242,
     "Min_Scale_Value": 44.135711669921878,
+    "IP_Adress": "192.168.0.39",
     "BoxData": [
         {
             "Name": "Box0",
@@ -19,16 +20,9 @@
         {
             "Name": "Box1",
             "X_Position_Value": -137.14285278320313,
-            "Y_Position_Value": 142.85714721679688,
-            "X_Size_Value": 46.599998474121097,
-            "Y_Size_Value": 157.75
-        },
-        {
-            "Name": "Box2",
-            "X_Position_Value": 8.571434020996094,
-            "Y_Position_Value": -197.14285278320313,
+            "Y_Position_Value": 131.42857360839845,
             "X_Size_Value": 52.30000305175781,
-            "Y_Size_Value": 32.35000228881836
+            "Y_Size_Value": 134.9499969482422
         }
     ]
 }

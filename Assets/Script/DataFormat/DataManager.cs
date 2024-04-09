@@ -1,11 +1,14 @@
+using HKY;
 using System;
 using System.IO;
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DataManager : MonoBehaviour
 {
-    private BoxManager m_boxManager;
+    public BoxManager m_boxManager;
+    public URGSensorObjectDetector m_senserData;
 
     [SerializeField] Slider Zoom_InOut;
     [SerializeField] Slider X_Position;
@@ -16,6 +19,7 @@ public class DataManager : MonoBehaviour
     [SerializeField] Slider Point_Scale;
     [SerializeField] Slider Max_Scale;
     [SerializeField] Slider Min_Scale;
+    [SerializeField] InputField IP_Adress;
 
     DataFormat data = new DataFormat();
 
@@ -25,8 +29,6 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        m_boxManager = GameObject.Find("BoxManager").GetComponent<BoxManager>();
-
         path = Path.Combine(Application.dataPath, "database.json");
         JsonLoad();
     }
@@ -44,6 +46,9 @@ public class DataManager : MonoBehaviour
 
             if (data != null)
             {
+                m_senserData.ip_address = data.IP_Adress;
+                m_senserData.gameObject.SetActive(true);
+
                 Zoom_InOut.value = data.Zoom_InOut_Value;
                 X_Position.value = data.X_Position_Value;
                 Y_Position.value = data.Y_Position_Value;
@@ -53,6 +58,7 @@ public class DataManager : MonoBehaviour
                 Point_Scale.value = data.Point_Scale_Value;
                 Max_Scale.value = data.Max_Scale_Value;
                 Min_Scale.value = data.Min_Scale_Value;
+                IP_Adress.text = data.IP_Adress;
 
                 m_boxManager.boxes = data.BoxData;
                 m_boxManager.setDropDownOpthions();
@@ -77,6 +83,7 @@ public class DataManager : MonoBehaviour
         data.Point_Scale_Value = Point_Scale.value;
         data.Max_Scale_Value = Max_Scale.value;
         data.Min_Scale_Value = Min_Scale.value;
+        data.IP_Adress = IP_Adress.text;
 
         data.BoxData = m_boxManager.boxes;
 

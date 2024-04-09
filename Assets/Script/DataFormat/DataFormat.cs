@@ -15,6 +15,7 @@ public class DataFormat
     public float Point_Scale_Value;
     public float Max_Scale_Value;
     public float Min_Scale_Value;
+    public string IP_Adress;
 
     public List<BoxData> BoxData = new List<BoxData>();
 }
