@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable] // Á÷·ÄÈ­
@@ -13,6 +15,19 @@ public class DataFormat
     public float Point_Scale_Value;
     public float Max_Scale_Value;
     public float Min_Scale_Value;
+    public string IP_Adress;
+
+    public List<BoxData> BoxData = new List<BoxData>();
+}
+
+[Serializable]
+public class BoxData
+{
+    public string Name;
+    public float X_Position_Value;
+    public float Y_Position_Value;
+    public float X_Size_Value;
+    public float Y_Size_Value;
 }
 
 [Serializable]
@@ -50,5 +65,10 @@ public class DetectedObjectData
     public Vector3 getCenter()
     {
         return new Vector3((Right + Left) / 2, (Top + Bottom) / 2, 0);
+    }
+
+    public Vector3 getSize()
+    {
+        return new Vector3(Mathf.Abs(Right) - Mathf.Abs(Left), Mathf.Abs(Top) - Mathf.Abs(Bottom), 0);
     }
 }

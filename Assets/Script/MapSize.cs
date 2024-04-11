@@ -7,10 +7,10 @@ public class MapSize : MonoBehaviour
 {
     [SerializeField] Slider Slider_X_Size;
     [SerializeField] Slider Slider_Y_Size;
-    [SerializeField] GameObject Map;
+    [SerializeField] RectTransform Map;
 
     private void Update()
     {
-        Map.GetComponent<RectTransform>().sizeDelta = new Vector2(Slider_X_Size.value ,Slider_Y_Size.value);
+        Map.sizeDelta = new Vector2(Slider_X_Size.value ,Slider_Y_Size.value);
     }
 }

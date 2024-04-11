@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class PointDetection : MonoBehaviour
 {
     private HokuyoManager hokuyoManager;
+    private OSCManager OSCmanager;
 
-    [SerializeField] GameObject Gizmos_Ob;
+    [SerializeField] GameObject Point_Ob;
     [SerializeField] GameObject ObjectPoint;
 
     [SerializeField] Slider Point_Scale;
@@ -22,6 +23,7 @@ public class PointDetection : MonoBehaviour
     private void Start()
     {
         hokuyoManager = GameObject.Find("HokuyoManager").GetComponent<HokuyoManager>();
+        OSCmanager = GameObject.Find("OSCManager").GetComponent<OSCManager>();
         StartCoroutine("CheckPointDetect");
     }
 
@@ -44,9 +46,9 @@ public class PointDetection : MonoBehaviour
 
             for (int i = 0; i < gizmos_Images.Count; i++)
             {
-                if (gizmos_Images[i].active)
+                if (gizmos_Images[i].activeSelf)
                 {
-                    Vector3 vector3 = gizmos_Images[i].transform.localPosition;
+                    Vector3 vector3 = gizmos_Images[i].transform.position;
 
                     if (detectedObjects.Count == 0)
                     {
@@ -75,21 +77,39 @@ public class PointDetection : MonoBehaviour
 
             for (int i = DetectedObjectPoints.Count;  i < detectedObjects.Count; i++)
             {
-                DetectedObjectPoints.Add(Instantiate(ObjectPoint, detectedObjects[i].getCenter(), this.transform.rotation, Gizmos_Ob.transform));
+                DetectedObjectPoints.Add(Instantiate(ObjectPoint, detectedObjects[i].getCenter(), this.transform.rotation, Point_Ob.transform));
             }
+
+            OSCmanager.StartMessage(Point_Ob.GetComponent<RectTransform>().rect.size);
 
             for (int i = 0; i < DetectedObjectPoints.Count; i++)
             {
-                if(detectedObjects.Count > i)
+                if (detectedObjects.Count > i)
                 {
-                    DetectedObjectPoints[i].SetActive(true);
-                    DetectedObjectPoints[i].transform.localPosition = detectedObjects[i].getCenter();
+                    if (detectedObjects[i].getSize().x > Min_Scale.value && detectedObjects[i].getSize().x < Max_Scale.value)
+                    {
+                        DetectedObjectPoints[i].SetActive(true);
+                        DetectedObjectPoints[i].transform.position = detectedObjects[i].getCenter();
+                        OSCmanager.SensorMessage(DetectedObjectPoints[i].transform.localPosition);
+                    }
+                    else if (detectedObjects[i].getSize().y > Min_Scale.value && detectedObjects[i].getSize().y < Max_Scale.value)
+                    {
+                        DetectedObjectPoints[i].SetActive(true);
+                        DetectedObjectPoints[i].transform.position = detectedObjects[i].getCenter();
+                        OSCmanager.SensorMessage(DetectedObjectPoints[i].transform.localPosition);
+                    }
+                    else
+                    {
+                        DetectedObjectPoints[i].SetActive(false);
+                    }
                 }
                 else
                 {
                     DetectedObjectPoints[i].SetActive(false);
                 }
             }
+
+            OSCmanager.StopMessage();
         }
     }
 }
