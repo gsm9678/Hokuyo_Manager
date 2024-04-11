@@ -2290,6 +2290,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &372573801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 372573803}
+  - component: {fileID: 372573802}
+  m_Layer: 0
+  m_Name: OSCManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &372573802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372573801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b98d3d8d4fa2944698677ca68855c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isOSC: {fileID: 1258231359}
+--- !u!4 &372573803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372573801}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 665.79877, y: 257.8152, z: -4.445542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &378173974
 GameObject:
   m_ObjectHideFlags: 0
@@ -4177,7 +4222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03cfb3c080ecdd45b789e2c5cfa7942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gizmos_Ob: {fileID: 1324377884}
+  Point_Ob: {fileID: 2139635808}
   ObjectPoint: {fileID: 8078557171247863453, guid: bc075f4387dd8fe49a03452da1274d6e, type: 3}
   Point_Scale: {fileID: 155183049}
   Max_Scale: {fileID: 77111168}
@@ -11285,6 +11330,7 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 372573803}
   - {fileID: 1258231360}
   - {fileID: 963194228}
   - {fileID: 705507995}

@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class OSCManager : MonoBehaviour
 {
-    private OSC _isOSC;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _isOSC = GetComponent<OSC>();
-    }
+    public OSC _isOSC;
 
     public void StartMessage(Vector2 vector2)
     {

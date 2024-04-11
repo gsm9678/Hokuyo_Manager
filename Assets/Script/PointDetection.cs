@@ -80,7 +80,7 @@ public class PointDetection : MonoBehaviour
                 DetectedObjectPoints.Add(Instantiate(ObjectPoint, detectedObjects[i].getCenter(), this.transform.rotation, Point_Ob.transform));
             }
 
-            OSCmanager.StartMessage(Point_Ob.GetComponent<RectTransform>().sizeDelta);
+            OSCmanager.StartMessage(Point_Ob.GetComponent<RectTransform>().rect.size);
 
             for (int i = 0; i < DetectedObjectPoints.Count; i++)
             {
