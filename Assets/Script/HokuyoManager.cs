@@ -46,20 +46,28 @@ public class HokuyoManager : MonoBehaviour
                 gizmos_Images[i].transform.position.y < Map.rect.height / 2 + Map.transform.position.y &&
                 gizmos_Images[i].transform.position.y > -Map.rect.height / 2 + Map.transform.position.y)
             {
-                foreach (RectTransform box in m_boxManager.objects)
+                if(m_boxManager.objects.Count > 0)
                 {
-                    if (gizmos_Images[i].transform.position.x < box.rect.width / 2 + box.transform.position.x &&
-                        gizmos_Images[i].transform.position.x > -box.rect.width / 2 + box.transform.position.x &&
-                        gizmos_Images[i].transform.position.y < box.rect.height / 2 + box.transform.position.y &&
-                        gizmos_Images[i].transform.position.y > -box.rect.height / 2 + box.transform.position.y)
+                    foreach (RectTransform box in m_boxManager.objects)
                     {
-                        gizmos_Images[i].SetActive(false); break;
-                    }
-                    else
-                    {
-                        gizmos_Images[i].SetActive(true);
+                        if (gizmos_Images[i].transform.position.x < box.rect.width / 2 + box.transform.position.x &&
+                            gizmos_Images[i].transform.position.x > -box.rect.width / 2 + box.transform.position.x &&
+                            gizmos_Images[i].transform.position.y < box.rect.height / 2 + box.transform.position.y &&
+                            gizmos_Images[i].transform.position.y > -box.rect.height / 2 + box.transform.position.y)
+                        {
+                            gizmos_Images[i].SetActive(false); break;
+                        }
+                        else
+                        {
+                            gizmos_Images[i].SetActive(true);
+                        }
                     }
                 }
+                else
+                {
+                    gizmos_Images[i].SetActive(true);
+                }
+                    
             }
             else
             {

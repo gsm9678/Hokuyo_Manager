@@ -23,6 +23,13 @@
             "Y_Position_Value": 131.42857360839845,
             "X_Size_Value": 52.30000305175781,
             "Y_Size_Value": 134.9499969482422
+        },
+        {
+            "Name": "Box2",
+            "X_Position_Value": 11.428570747375489,
+            "Y_Position_Value": -191.42857360839845,
+            "X_Size_Value": 38.04999923706055,
+            "Y_Size_Value": 35.20000076293945
         }
     ]
 }
