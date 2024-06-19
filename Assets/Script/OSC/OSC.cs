@@ -176,6 +176,7 @@ public class UDPPacketIO
         {
             Debug.LogWarning("cannot open udp client interface at port " + localPort);
             Debug.LogWarning(e);
+            localPort++;
         }
 
         return false;
@@ -511,6 +512,10 @@ public class OSC : MonoBehaviour
 		*/
     }
 
+    public void SetIp(string s)
+    {
+        outIP = s;
+    }
 
 
     void OnApplicationPause(bool pauseStatus)
@@ -569,6 +574,18 @@ public class OSC : MonoBehaviour
         //Debug.LogError("~Osc");
     }
     */
+
+    public bool isRunning()
+    {
+        return ReaderRunning;
+    }
+
+    public void Open()
+    {
+        if(ReaderRunning == false)
+            Awake();
+    }
+
     public void Close()
     {
         //Debug.Log("Osc Cancel start");

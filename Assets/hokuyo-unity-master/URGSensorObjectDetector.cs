@@ -327,6 +327,22 @@ namespace HKY
             StartMeasureDistance();
         }
 
+        public void DisableTCP()
+        {
+            urg.DeInit();
+        }
+
+        public void EnableTCP()
+        {
+            urg.ResartTCP(ip_address, port_number);
+            StartMeasureDistance();
+        }
+
+        public void setIPAdress(string s)
+        {
+            ip_address = s;
+        }
+
         private void StartMeasureDistance()
         {
             urg.Write(SCIP_library.SCIP_Writer.MD(0, 1080, 1, 0, 0));

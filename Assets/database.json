@@ -9,6 +9,8 @@
     "Max_Scale_Value": 63.93571090698242,
     "Min_Scale_Value": 44.135711669921878,
     "IP_Adress": "192.168.0.39",
+    "OSC_IP_Adress": "127.0.0.1",
+    "OSC_Adress": "Sensor",
     "BoxData": [
         {
             "Name": "Box0",
@@ -20,7 +22,7 @@
         {
             "Name": "Box1",
             "X_Position_Value": -137.14285278320313,
-            "Y_Position_Value": 131.42857360839845,
+            "Y_Position_Value": 134.28570556640626,
             "X_Size_Value": 52.30000305175781,
             "Y_Size_Value": 134.9499969482422
         },

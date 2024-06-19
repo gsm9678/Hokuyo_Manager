@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
 {
     public BoxManager m_boxManager;
     public URGSensorObjectDetector m_senserData;
+    public OSCManager m_OSCManager;
 
     [SerializeField] Slider Zoom_InOut;
     [SerializeField] Slider X_Position;
@@ -20,6 +21,8 @@ public class DataManager : MonoBehaviour
     [SerializeField] Slider Max_Scale;
     [SerializeField] Slider Min_Scale;
     [SerializeField] InputField IP_Adress;
+    [SerializeField] InputField OSC_IP_Adress;
+    [SerializeField] InputField OSC_Adress;
 
     DataFormat data = new DataFormat();
 
@@ -46,6 +49,7 @@ public class DataManager : MonoBehaviour
 
             if (data != null)
             {
+                m_OSCManager.setName(data.OSC_Adress);
                 m_senserData.ip_address = data.IP_Adress;
                 m_senserData.gameObject.SetActive(true);
 
@@ -59,6 +63,8 @@ public class DataManager : MonoBehaviour
                 Max_Scale.value = data.Max_Scale_Value;
                 Min_Scale.value = data.Min_Scale_Value;
                 IP_Adress.text = data.IP_Adress;
+                OSC_IP_Adress.text = data.OSC_IP_Adress;
+                OSC_Adress.text = data.OSC_Adress;
 
                 m_boxManager.boxes = data.BoxData;
                 m_boxManager.setDropDownOpthions();
@@ -84,6 +90,8 @@ public class DataManager : MonoBehaviour
         data.Max_Scale_Value = Max_Scale.value;
         data.Min_Scale_Value = Min_Scale.value;
         data.IP_Adress = IP_Adress.text;
+        data.OSC_IP_Adress = OSC_IP_Adress.text;
+        data.OSC_Adress = OSC_Adress.text;
 
         data.BoxData = m_boxManager.boxes;
 

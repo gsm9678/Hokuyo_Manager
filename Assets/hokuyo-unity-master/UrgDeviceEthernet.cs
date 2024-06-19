@@ -79,7 +79,18 @@ public class UrgDeviceEthernet : UrgDevice
         DeInit();
     }
 
-    void DeInit()
+    public void ResartTCP(string ip = "192.168.0.10", int port = 10940)
+    {
+        if (tcpClient != null)
+        {
+            if (!tcpClient.Connected)
+            {
+                StartTCP(ip, port);
+            }
+        }
+    }
+
+    public void DeInit()
     {
         if (tcpClient != null)
         {
